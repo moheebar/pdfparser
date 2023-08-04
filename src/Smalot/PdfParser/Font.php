@@ -610,7 +610,8 @@ class Font extends PDFObject
         // so we use iconv() here
         $iconvEncodingName = $this->getIconvEncodingNameOrNullByPdfEncodingName($pdfEncodingName);
 
-        return $iconvEncodingName ? iconv($iconvEncodingName, 'UTF-8//TRANSLIT//IGNORE', $text) : null;
+        //return $iconvEncodingName ? iconv($iconvEncodingName, 'UTF-8//TRANSLIT//IGNORE', $text) : null;
+        return mb_convert_encoding($text, 'UTF-8', $iconvEncodingName);
     }
 
     /**
